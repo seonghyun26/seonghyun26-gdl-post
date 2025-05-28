@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: seonghyun26-gdl-post/al-folio/sitemap.xml
+Sitemap: https://seonghyun26.github.io/seonghyun26-gdl-post//sitemap.xml
