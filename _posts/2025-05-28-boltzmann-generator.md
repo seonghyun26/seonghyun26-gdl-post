@@ -33,7 +33,9 @@ bibliography: 2025-05-28-bg.bib
 toc:
   - name: Molecular systems and the Boltzmann distribution
   - name: Boltzmann generators
-  - name: Transferable Boltzmann generators
+  - name: Transferable Boltzmann Generators
+    - subsection:
+      - name: Flow matching
 
 # Below is an example of injecting additional post-specific styles.
 # If you use this post as a template, delete this _styles block.
@@ -69,14 +71,26 @@ $$
 where $$ U(x)$$ denotes the potential energy of the system, $$k_{B}$$ the Boltzmann constant, and $$T$$ the temperature. Intuitively, molecular systems having low energy are likely to be observed than the ones having a high energy.
 
 
-## Boltzmann generators
+## Boltzmann generators (BG)
 
-Finally, the Boltzmann generators (BGs)
+Boltzmann generators (BG) learns the Boltzmann distribution with the following main three components:
 
+- training by energy
+- training by example
+- inveritble network
 
+<div class="col-sm mt-3 mt-md-0">
+  {% include figure.liquid loading="eager" path="assets/img/bg.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+</div>
 
+## Transferable Boltzmann Generators (TBG)
 
-## Transferable Boltzmann generators
+The Transferable Boltzmann Generators (TBG) extend boltzmann generators on two aspects:
 
-The transferable Boltzmann generators
+- Flow matching
+- Full atom coordinate generation
+- Transferablility among dipeptides
 
+### Flow matching
+
+Previously, the boltzmann generator used an ``RealNVP'' to learn the flow. Extending from this, TBG replaces this process with flow matching.
