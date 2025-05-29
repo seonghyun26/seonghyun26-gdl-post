@@ -1,11 +1,9 @@
 ---
 layout: post
 title: boltzmann distributions and generative models
+date: 2025-06-01 10:14:00-0400
 description: generative models for learning the boltzmann distribution
 tags: geometric_deep_learning
-giscus_comments: true
-date: 2025-06-01 10:14:00-0400
-tags: formatting toc sidebar
 categories: sample-posts
 giscus_comments: true
 related_posts: false
@@ -21,7 +19,7 @@ First, we briefly go over the backgroudn knolwedge about molecular systems and t
 
 ### Molecular systems
 
-Molecualar systems 
+Consider a molecular systems constiting of $N$ atoms.
 
 ### Boltzmann distribution
 
@@ -34,7 +32,6 @@ Finally, the Boltzmann generators (BGs)
 ## Generative models
 
 Generative models have shown success in many areas.
-
 
 ### Transferable Boltzmann generators
 
