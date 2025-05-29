@@ -2,7 +2,7 @@
 layout: distill
 title: boltzmann distributions and generative models
 description: generative models for learning the boltzmann distribution
-tags: geometric deep learning
+tags: geometric_deep_learning
 giscus_comments: true
 date: 2025-06-01
 featured: true
@@ -17,7 +17,6 @@ chart:
   vega_lite: true
 tikzjax: true
 typograms: true
-
 
 authors:
   - name: Seonghyun Park
@@ -34,7 +33,7 @@ toc:
   - name: Background
     subsections:
       - name: Molecular systems
-      - name: Boltzmann distributions
+      - name: Boltzmann distribution
       - name: Boltzmann generators
   - name: Generative models
     subsections:
