@@ -21,19 +21,6 @@ typograms: true
 authors:
   - name: Seonghyun Park
 
-# authors:
-#   - name: Albert Einstein
-#     url: "https://en.wikipedia.org/wiki/Albert_Einstein"
-#     affiliations:
-#       name: IAS, Princeton
-#   - name: Boris Podolsky
-#     url: "https://en.wikipedia.org/wiki/Boris_Podolsky"
-#     affiliations:
-#       name: IAS, Princeton
-#   - name: Nathan Rosen
-#     url: "https://en.wikipedia.org/wiki/Nathan_Rosen"
-#     affiliations:
-#       name: IAS, Princeton
 
 bibliography: 2025-05-28-bg.bib
 
@@ -47,7 +34,6 @@ toc:
   - name: Molecular systems and the Boltzmann distribution
   - name: Boltzmann generators
   - name: Transferable Boltzmann generators
-  - name: Sequential Boltzmann generators
 
 # Below is an example of injecting additional post-specific styles.
 # If you use this post as a template, delete this _styles block.
@@ -72,16 +58,25 @@ This post goes over the basic of Boltzmann distribution and generative models le
 
 ## Molecular systems and the Boltzmann distribution
 
-Consider a molecular systems constiting of $N$ atoms. Consider a molecular system evolving over infinitely over time, then we get the Boltzmann distribution that is a proportional distribution against energy.
+In this post, we consider a molecular systems consisting of $$N$$ atoms, where the positiosn of each atoms is denoted as $$ x \in \mathbb{R}^{3N} $$.
+
+The Boltzmann distribution refers to the probability distribution as follows:
+
+$$
+  \mu(x) \sim \operatorname{exp}(-\frac{U(x)}{k_{B}T})
+$$
+
+where $$ U(x)$$ denotes the potential energy of the system, $$k_{B}$$ the Boltzmann constant, and $$T$$ the temperature. Intuitively, molecular systems having low energy are likely to be observed than the ones having a high energy.
+
 
 ## Boltzmann generators
 
 Finally, the Boltzmann generators (BGs)
 
+
+
+
 ## Transferable Boltzmann generators
 
 The transferable Boltzmann generators
 
-## Sequential Boltzmann generators
-
-The sequential boltzmann generators
