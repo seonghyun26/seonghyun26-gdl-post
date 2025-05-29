@@ -70,7 +70,6 @@ $$
 
 where $$ U(x)$$ denotes the potential energy of the system, $$k_{B}$$ the Boltzmann constant, and $$T$$ the temperature. Intuitively, molecular systems having low energy are likely to be observed than the ones having a high energy.
 
-
 ## Boltzmann generators (BG)
 
 Boltzmann generators (BG) learns the Boltzmann distribution with the following main three components:
