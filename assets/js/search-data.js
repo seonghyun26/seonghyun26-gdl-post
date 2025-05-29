@@ -83,6 +83,17 @@ ninja.data = [{
             window.location.href = "/seonghyun26-gdl-post/blog/2025/2025-05-29-example/";
           
         },
+      },{id: "post-a-distill-style-blog-post",
+        
+          title: "a distill-style blog post",
+        
+        description: "an example of a distill-style blog post and main elements",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/seonghyun26-gdl-post/blog/2025/example/";
+          
+        },
       },{id: "post-a-post-with-plotly-js",
         
           title: "a post with plotly.js",
