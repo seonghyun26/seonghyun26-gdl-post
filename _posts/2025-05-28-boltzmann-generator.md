@@ -1,8 +1,8 @@
 ---
 layout: distill
-title: a distill-style blog post
-description: an example of a distill-style blog post and main elements
-tags: distill formatting
+title: Boltzmann distributions and generative models
+description: generative models for learning the boltzmann distribution
+tags: geometric_deep_learning
 giscus_comments: true
 date: 2025-05-28
 featured: true
@@ -19,18 +19,21 @@ tikzjax: true
 typograms: true
 
 authors:
-  - name: Albert Einstein
-    url: "https://en.wikipedia.org/wiki/Albert_Einstein"
-    affiliations:
-      name: IAS, Princeton
-  - name: Boris Podolsky
-    url: "https://en.wikipedia.org/wiki/Boris_Podolsky"
-    affiliations:
-      name: IAS, Princeton
-  - name: Nathan Rosen
-    url: "https://en.wikipedia.org/wiki/Nathan_Rosen"
-    affiliations:
-      name: IAS, Princeton
+  - name: Seonghyun Park
+
+# authors:
+#   - name: Albert Einstein
+#     url: "https://en.wikipedia.org/wiki/Albert_Einstein"
+#     affiliations:
+#       name: IAS, Princeton
+#   - name: Boris Podolsky
+#     url: "https://en.wikipedia.org/wiki/Boris_Podolsky"
+#     affiliations:
+#       name: IAS, Princeton
+#   - name: Nathan Rosen
+#     url: "https://en.wikipedia.org/wiki/Nathan_Rosen"
+#     affiliations:
+#       name: IAS, Princeton
 
 bibliography: 2018-12-22-distill.bib
 
