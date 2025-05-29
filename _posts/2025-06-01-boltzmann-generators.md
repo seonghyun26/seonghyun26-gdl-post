@@ -61,23 +61,31 @@ _styles: >
 
 
 
-# Background
+## Background
 
-## Molecular systems
+First, we briefly go over the backgroudn knolwedge about molecular systems and the Boltzmann distribution.
+
+### Molecular systems
+
 Molecualar systems 
 
-## Boltzmann distribution
+### Boltzmann distribution
 
 Boltzmann distribution is a proportional distribution against energy.
 
-## Boltzmann generators
+### Boltzmann generators
+
+Finally, the Boltzmann generators (BGs)
+
+## Generative models
+
+Generative models have shown success in many areas.
 
 
-# Generative models
+### Transferable Boltzmann generators
 
+The transferable Boltzmann generators
 
+### Sequential Boltzmann generators
 
-## Transferable Boltzmann generators
-
-
-## Sequential Boltzmann generators
+The sequential boltzmann generators
