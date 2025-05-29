@@ -1,64 +1,19 @@
 ---
-layout: distill
+layout: post
 title: boltzmann distributions and generative models
 description: generative models for learning the boltzmann distribution
 tags: geometric_deep_learning
 giscus_comments: true
-date: 2025-06-01
-featured: true
-mermaid:
-  enabled: true
-  zoomable: true
-code_diff: true
-map: true
-chart:
-  chartjs: true
-  echarts: true
-  vega_lite: true
-tikzjax: true
-typograms: true
-
-authors:
-  - name: Seonghyun Park
-
-bibliography: 2025-06-01-bg.bib
-
-# Optionally, you can add a table of contents to your post.
-# NOTES:
-#   - make sure that TOC names match the actual section names
-#     for hyperlinks within the post to work correctly.
-#   - we may want to automate TOC generation in the future using
-#     jekyll-toc plugin (https://github.com/toshimaru/jekyll-toc).
+date: 2025-06-01 10:14:00-0400
+tags: formatting toc sidebar
+categories: sample-posts
+giscus_comments: true
+related_posts: false
 toc:
-  - name: Background
-    - subsections:
-      - name: Molecular systems
-      - name: Boltzmann distribution
-      - name: Boltzmann generators
-  - name: Generative models
-    - subsections:
-      - name: Transferable Boltzmann generators
-      - name: Sequential Boltzmann generators
-
-
-_styles: >
-  .fake-img {
-    background: #bbb;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 12px;
-  }
-  .fake-img p {
-    font-family: monospace;
-    color: white;
-    text-align: left;
-    margin: 12px 0;
-    text-align: center;
-    font-size: 16px;
-  }
+  sidebar: left
 ---
 
-
+This post goes over the basic of Boltzmann distribution and generative models learning them.
 
 ## Background
 
