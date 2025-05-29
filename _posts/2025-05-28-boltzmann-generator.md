@@ -65,7 +65,7 @@ In this post, we consider a molecular systems consisting of $$N$$ atoms, where t
 The Boltzmann distribution refers to the probability distribution as follows:
 
 $$
-  \mu(x) \sim \operatorname{exp}(-\frac{U(x)}{k_{B}T})
+  \mu(x) \sim \operatorname{exp} \big(-\frac{U(x)}{k_{B}T}\big)
 $$
 
 where $$ U(x)$$ denotes the potential energy of the system, $$k_{B}$$ the Boltzmann constant, and $$T$$ the temperature. Intuitively, molecular systems having low energy are likely to be observed than the ones having a high energy.
@@ -79,8 +79,10 @@ Boltzmann generators (BG) learns the Boltzmann distribution with the following m
 - training by example
 - inveritble network
 
-<div class="col-sm mt-3 mt-md-0">
-  {% include figure.liquid loading="eager" path="assets/img/bg.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+<div class="row mt-3">
+  <div class="col-sm mt-3 mt-md-0">
+    {% include figure.liquid loading="eager" path="assets/img/bg.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+  </div>
 </div>
 
 ## Transferable Boltzmann Generators (TBG)
