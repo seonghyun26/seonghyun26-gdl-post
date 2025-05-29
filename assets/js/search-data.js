@@ -83,15 +83,15 @@ ninja.data = [{
             window.location.href = "/seonghyun26-gdl-post/blog/2025/2025-05-29-example/";
           
         },
-      },{id: "post-a-distill-style-blog-post",
+      },{id: "post-boltzmann-distributions-and-generative-models",
         
-          title: "a distill-style blog post",
+          title: "Boltzmann distributions and generative models",
         
-        description: "an example of a distill-style blog post and main elements",
+        description: "generative models for learning the boltzmann distribution",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/seonghyun26-gdl-post/blog/2025/example/";
+            window.location.href = "/seonghyun26-gdl-post/blog/2025/boltzmann-generator/";
           
         },
       },{id: "post-a-post-with-plotly-js",
