@@ -72,7 +72,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/seonghyun26-gdl-post/blog/";
               },
-            },{id: "post-a-post-with-plotly-js",
+            },{id: "post-",
+        
+          title: "",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/seonghyun26-gdl-post/blog/2025/2025-06-01-example/";
+          
+        },
+      },{id: "post-a-post-with-plotly-js",
         
           title: "a post with plotly.js",
         
@@ -356,17 +367,6 @@ ninja.data = [{
         handler: () => {
           
             window.location.href = "/seonghyun26-gdl-post/blog/2021/diagrams/";
-          
-        },
-      },{id: "post-example-post",
-        
-          title: "example post",
-        
-        description: "an example of a distill-style blog post and main elements",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/seonghyun26-gdl-post/blog/2021/example/";
           
         },
       },{id: "post-a-distill-style-blog-post",
