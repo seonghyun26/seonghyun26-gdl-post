@@ -31,12 +31,12 @@ bibliography: 2025-06-01-bg.bib
 #     jekyll-toc plugin (https://github.com/toshimaru/jekyll-toc).
 toc:
   - name: Background
-    subsections:
+    - subsections:
       - name: Molecular systems
       - name: Boltzmann distribution
       - name: Boltzmann generators
   - name: Generative models
-    subsections:
+    - subsections:
       - name: Transferable Boltzmann generators
       - name: Sequential Boltzmann generators
 
