@@ -72,15 +72,15 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/seonghyun26-gdl-post/blog/";
               },
-            },{id: "post-boltzmann-distributions-and-generative-models",
+            },{id: "post-",
         
-          title: "Boltzmann distributions and generative models",
+          title: "",
         
-        description: "generative models for learning the boltzmann distribution",
+        description: "",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/seonghyun26-gdl-post/blog/2025/boltzmann-generator/";
+            window.location.href = "/seonghyun26-gdl-post/blog/2025/2025-05-28-boltzmann-generator/";
           
         },
       },{id: "post-a-post-with-plotly-js",
