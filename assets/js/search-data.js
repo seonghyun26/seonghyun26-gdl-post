@@ -358,6 +358,17 @@ ninja.data = [{
             window.location.href = "/seonghyun26-gdl-post/blog/2021/diagrams/";
           
         },
+      },{id: "post-example-post",
+        
+          title: "example post",
+        
+        description: "an example of a distill-style blog post and main elements",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/seonghyun26-gdl-post/blog/2021/example/";
+          
+        },
       },{id: "post-a-distill-style-blog-post",
         
           title: "a distill-style blog post",
