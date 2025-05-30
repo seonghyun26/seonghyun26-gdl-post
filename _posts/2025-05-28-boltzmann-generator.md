@@ -79,10 +79,17 @@ Boltzmann generators (BG) learns the Boltzmann distribution with the following m
 - inveritble network
 
 <div class="row mt-3">
-  <div class="col-sm mt-3 mt-md-0">
-    {% include figure.liquid loading="eager" path="assets/img/bg.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
-  </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/11.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/12.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/7.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
 </div>
+
 
 ## Transferable Boltzmann Generators (TBG)
 
