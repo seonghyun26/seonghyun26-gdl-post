@@ -31,11 +31,21 @@ bibliography: 2025-05-28-bg.bib
 #   - we may want to automate TOC generation in the future using
 #     jekyll-toc plugin (https://github.com/toshimaru/jekyll-toc).
 toc:
+  - name: Introduction
   - name: Molecular systems and the Boltzmann distribution
+    subsection:
+    - name: Alanine Dipeptide
   - name: Boltzmann generators
+    subsection:
+    - name: Training by Energy
+    - name: Training by Example
+    - name: Invertible Networks (Normalizaing Flows)
   - name: Transferable Boltzmann Generators
-    - subsection:
-      - name: Flow matching
+    subsection:
+    - name: Flow matching
+    - name: Full atom Coordinate Generation
+    - name: Transferability among Dipeptides
+  - name: Conclusion
 
 # Below is an example of injecting additional post-specific styles.
 # If you use this post as a template, delete this _styles block.
@@ -56,21 +66,37 @@ _styles: >
   }
 ---
 
-This post goes over the basic of Boltzmann distribution and generative models learning them.
+## Introduction
+
+Boltzmann Generators (BG) have emerged as powerful generative models that bridge statistical mechanics and deep learning. These innovative tools address the fundamental challenge of sampling molecular configurations efficiently from complex, high-dimensional energy landscapes. In this post, we provide an in-depth overview of molecular systems, the Boltzmann distribution, and how Boltzmann Generators learn and generate configurations adhering to this distribution. Furthermore, we explore recent advancements, particularly Transferable Boltzmann Generators (TBG), highlighting improvements in sampling efficiency and generalizability across diverse molecular systems.
 
 ## Molecular systems and the Boltzmann distribution
 
-In this post, we consider a molecular systems consisting of $$N$$ atoms, where the positiosn of each atoms is denoted as $$ x \in \mathbb{R}^{3N} $$.
+> Goal: sampling in high-dimensional energy landscapes
 
-The Boltzmann distribution refers to the probability distribution as follows:
+Consider a molecular system consisting of $$N$$ atoms, where the configuration of each atom is represented by coordinates $$x \in \mathbb{R}^{3 N}$$. In statistical mechanics, the equilibrium probability of observing a particular configuration  follows the Boltzmann distribution:
 
 $$
   \mu(x) \sim \operatorname{exp} \big(-\frac{U(x)}{k_{B}T}\big)
 $$
 
-where $$ U(x)$$ denotes the potential energy of the system, $$k_{B}$$ the Boltzmann constant, and $$T$$ the temperature. Intuitively, molecular systems having low energy are likely to be observed than the ones having a high energy.
+where each symbol denotes the following.
+
+- $$U(x)$$: the potential energy associated with configuration
+
+- $$k_{B}$$: the Boltzmann constant
+
+- $$T$$: the temperature
+
+Intuitively, configurations with lower energy are more probable, whereas configurations with higher energy are exponentially less likely. While efficiently sampling from this distribution is crucial for understanding molecular behavior, thermodynamics, and reaction dynamics, samples with high energy makes this challenging.
+
+### Alanine Dipeptide
+
+For instance, consider the Ramachandran plot for Alanine Dipeptide, a simplified model peptide frequently studied in molecular dynamics. The Ramachandran plot illustrates energetically favorable regions (valleys) and unfavorable regions (mountains), visually representing the Boltzmann distribution in torsional angle space $$\phi$$ and $$\psi$$.
 
 ## Boltzmann generators (BG)
+
+> TL;DR configuration generation with invertible networks, trained with energy and samples.
 
 Boltzmann generators (BG) learns the Boltzmann distribution with the following main three components:
 
@@ -78,22 +104,56 @@ Boltzmann generators (BG) learns the Boltzmann distribution with the following m
 - training by example
 - inveritble network
 
-<div class="row mt-3">
+<div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.liquid loading="eager" path="assets/img/bg.jpg" title="boltzmann generators" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/12.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/7.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+</div>
+<div class="caption">
+    Overview of Boltzmann generators
 </div>
 
 
+### Training by Energy
+
+Boltzmann Generators leverage the explicit energy function $$U(x)$$ to guide learning. The training objective often involves minimizing the Kullback–Leibler divergence between the generated distribution and the true Boltzmann distribution, expressed as:
+
+$$
+    \mathcal{L}_{KL} = \mathbb{E}_{z \sim q_{z}} \Big[
+        \beta U(F(z)) - \operatorname{log}\operatorname{det}\Big\vert
+            \frac{F(z)}{z}
+        \Big\vert
+    \Big]
+$$
+
+where $$\beta$$ denotes the inverse temperature, i.e., $$\beta = 1 / (k_{B}T)$$.
+
+### Training by Example
+
+To overcome the limitations of energy-based training alone (such as mode collapse), BGs often integrate example-based training using molecular dynamics or Monte Carlo samples. This hybrid approach ensures that the model adequately captures multiple low-energy configurations and effectively covers the energy landscape.
+
+### Invertible Networks (Normalizing Flows)
+
+At the heart of BGs lies the concept of normalizing flows, invertible neural networks capable of efficiently transforming simple latent distributions into complex, high-dimensional molecular configurations. By maintaining invertibility, these networks allow explicit probability calculations necessary for accurate sampling and reweighting.
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/RealNVP.jpg" title="boltzmann generators" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Overview of Boltzmann generators
+</div>
+
+### Experiments
+
+BGs presents configuration generation on xxx.
+
 ## Transferable Boltzmann Generators (TBG)
 
-The Transferable Boltzmann Generators (TBG) extend boltzmann generators on two aspects:
+> TL;DR Full atom coordinate generation with flow matching, transferable between dipeptides.
+
+Transferable Boltzmann Generators extend the capabilities of traditional Boltzmann Generators by incorporating innovations that improve sampling efficiency and enable generalization across multiple molecular systems. Specifically, TBG introduces:
 
 - Flow matching
 - Full atom coordinate generation
@@ -102,3 +162,15 @@ The Transferable Boltzmann Generators (TBG) extend boltzmann generators on two a
 ### Flow matching
 
 Previously, the boltzmann generator used an ``RealNVP'' to learn the flow. Extending from this, TBG replaces this process with flow matching.
+
+### Full atom Coordinate Generation
+
+Boltzman generators have used ``internal coordinates'', i.e., atom-wise distance and torsion angles, for representations.
+
+### Transferability among Dipeptides
+
+Another notable contribution of TBGs is the transferability among dipeptides.
+
+## Conclusion
+
+Boltzmann Generators (BG) represent a transformative integration of statistical mechanics and deep learning, addressing critical challenges in efficient sampling from high-dimensional molecular energy landscapes. Continuous advancements such as Transferable Boltzmann Generators (TBG) further enhance the efficiency, accuracy, and generalizability of these powerful models. As these methodologies evolve, researchers gain increasingly robust tools to explore complex molecular behaviors, profoundly impacting fields like computational chemistry, drug discovery, and materials science.
