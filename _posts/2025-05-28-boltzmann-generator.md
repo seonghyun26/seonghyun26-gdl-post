@@ -49,6 +49,7 @@ toc:
     subsection:
     - name: Efficient Non-Equivariant Transformer-Based Flows
     - name: Annealed Langevin Dynamics and Sequential Monte Carlo
+    - name: Experiments
   - name: Conclusion
 
 # Below is an example of injecting additional post-specific styles.
@@ -100,7 +101,7 @@ For instance, consider the Ramachandran plot for Alanine Dipeptide, a simplified
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/aldp_c7a2.png" title="aldp_c7ax" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/aldp_c7ax.png" title="aldp_c7ax" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/ram.jpg" title="ram" class="img-fluid rounded z-depth-1" %}
@@ -147,7 +148,7 @@ where
 - $z$: latent variable from a simple known distribution, e.g., Gaussian
 - $F_{zx}()$: the invertible neural network, transforming latent variables $z$ into real space configurations $x$
 
-In short, BG generates real world configurations $x$ from latent variables $z$, and makes the distribution of the generates samples $p(x)$ similar to the Boltzmann distribution $q(x)$ computed with the potential energy function $U(x)$.
+In short, BG generates real world configurations $x$ from latent variables $z$, and makes the distribution of the generates samples $p(x)$ similar to the Boltzmann distribution $\mu(x)$ computed with the potential energy function $U(x)$.
 
 Another interpretation of the loss term is that the first term is the mean potential energy, i.e., the internal energy of the system. On the other hand, the second term is equal to the entropic contribution to the free energy. However, desptive the entropy term, simple training by energy has some troubles. It results in sampling most stable meta-stable states rather than multiple ones.
 
@@ -260,10 +261,11 @@ $$
         f_{t, \theta}(t, x) - u_t(x \vert z)
     \Vert\Big]^2_2
 $$
+
 - $f_{t, \theta}(t, x)$: parameterized vector field graudlly transforming the representation
 - $u_t(x \vert z)$: target conditional vector field, computed by the time interpolation between the samples and noise
 
-Now, another difference from the BG is the backbone model they used.
+Now, another difference from the BG is the backbone model they used, for directly generating coordiantes.
 
 ### Full atom Coordinate Generation
 
@@ -295,6 +297,15 @@ The evaluations of generated samples are two-fold. Qualitatively, the Ramachandr
 
 ## Sequential Boltzmann Generators
 
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/sbg_concept.png" title="sbg_concept" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Concept of SBG, using inference time non-equilibirum transport to move initial samples from a normalizing flow.
+</div>
+
 Sequential Boltzmann Generators (SBG) further advance BG scalability and efficiency, employing two key improvements:
 
 - Non-equivariant flows
@@ -302,22 +313,51 @@ Sequential Boltzmann Generators (SBG) further advance BG scalability and efficie
 
 ### Efficient Non-Equivariant Transformer-Based Flows
 
-SBGs use highly efficient non-equivariant Transformer-based normalizing flows operating directly on Cartesian coordinates. Unlike equivariant continuous flows, these architectures are exactly invertible, offering efficient sample generation and likelihood computation, enabling sophisticated inference strategies.
+Now, SBGs step back to the non-equivariant architectures for parameterizing the flows. Since expressive enough non-equivariant flows can learn to approximate any equivariant maps, they apply TarFlow, a masked autoregressive flow model. Another advantage of this architecture is that it is **exactly** invertible! This offers efficient sample generation and computation
 
 ### Annealed Langevin Dynamics and Sequential Monte Carlo
 
-SBGs utilize inference-time annealed Langevin dynamics to transport initial proposal samples  towards the target Boltzmann distribution. This is governed by the stochastic differential equation:
+Now is the final and core of SBG, inference time scaling of BGs. Simple importance sampling estimator suffers from large varaince of importance weights as the dimension and complex of the target $\mu(x)$ grows. SBG address this bottleneck by an inference time scaling algorithm that anneals samples and corresponding unnormalized importance weights. To be sepcific, they make use of Aneealed Importance Sampling (AIS), where the following SDE drives the samples toward the meta-stable states of the Boltzmann distribution:
 
 $$
-    \mathrm{d}t = 
+    \mathrm{d}x_{\tau} = - \epsilon_{\tau} \nabla U_{\tau}(x_{\tau}) \mathrm{d}\tau + \sqrt{2\epsilon_\tau}\mathrm{d}W_{\tau}
 $$
 
-where  interpolates between the proposal energy  and the target Boltzmann energy , and  is a standard Wiener process.
+- $\epsilon_\tau$: time dependent diffusion coefficient bigger than zero
+- $W_\tau$: standar Wiener process
+- $U_\tau$: simple linear interpolant of energy, i.e., $(1 - \tau)U_0 + \tau U_1$
 
-The evolution of importance weights  through this process is given by Jarzynski's equality:
+For the reweighting weights, the main results frmo the Jarzynski's equality is used as follows:
 
+$$
+    \mathrm{d}\operatorname{log}w_{\tau} = - \partial_\tau U_\tau(x_\tau) \mathrm{d}\tau
+$$
 
-At the final step , these adjusted samples and importance weights significantly enhance sampling fidelity, enabling scalable equilibrium sampling even in larger peptide systems previously intractable for standard BGs.
+These adjusted samples and importance weights significantly enhance sampling fidelity, enabling scalable equilibrium sampling even in larger peptide systems previously intractable for standard BGs.
+
+### Experiments
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/sbg.png" title="sbg" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Quantitative results on ALDP by SBG. 
+</div>
+
+Furthermore, SBG offers additional quantitative resutls compared to BGs. Additionally to the energy distribution, it also report the dihedral angle distribtuion $\mathbb{T}-\mathcal{W}_2$. Note that ECNF refers to TBG.
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/sbg_al346.png" title="sbg_al346" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Quantitative results on tripeptide, tetrapeptide, and hexapeptide by SBG.
+</div>
+
+SBG also presents experimental results on trialanine, alanine tetrapeptide, and hexa peptides, showing superior performance to prior works.
 
 ## Conclusion
 
